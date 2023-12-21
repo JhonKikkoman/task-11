@@ -1,13 +1,11 @@
 /** @format */
-/* eslint-disable jsx-a11y/anchor-is-valid */
 
+import { NavLink } from 'react-router-dom';
 import { NotFound } from './NotFound';
 import { propMainContent } from './models';
-import { NavLink } from 'react-router-dom';
 
-export function MainContent({ propArr, propClbk }: propMainContent) {
+export function MainContent({ propArr, mainContentClbk }: propMainContent) {
   const { Search } = propArr;
-
   return (
     <>
       {propArr.Response === 'False' ? (
@@ -20,7 +18,7 @@ export function MainContent({ propArr, propClbk }: propMainContent) {
                 <NavLink
                   to='/details'
                   className='item__link'
-                  onClick={() => propClbk(el.imdbID)}
+                  onClick={() => mainContentClbk(el.imdbID)}
                 >
                   {el.Title}
                 </NavLink>

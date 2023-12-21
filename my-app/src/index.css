@@ -126,6 +126,10 @@
   align-self: start;
 }
 
+.go-back_btn-modefied {
+  align-self: end;
+}
+
 .info__container {
   display: flex;
   flex-direction: column;

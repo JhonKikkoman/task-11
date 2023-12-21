@@ -25,6 +25,7 @@ export type stateDetailsT = {
   Director: string;
   Actors: string;
   imdbRating: string;
+  imdbID: string;
 };
 // <------------SearchBar_Models--------------------->
 
@@ -38,5 +39,20 @@ export type propT = {
 
 export type propMainContent = {
   propArr: stateT;
-  propClbk: (str: string) => void;
+  mainContentClbk: (str: string) => void;
+};
+
+// <---------------------FilmDetails_Models--------------------------->
+
+export type propFilmDetailsT = {
+  propObj: stateDetailsT | null;
+  propClbk: () => void;
+};
+
+//<-----------------------FavoritePage_Models------------------------>
+
+export type propFavPageT = {
+  propArr: stateDetailsT[];
+  favoritePageClbk: (str: string) => void;
+  filterClbk: (str: string) => void;
 };

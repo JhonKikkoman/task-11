@@ -1,9 +1,9 @@
 /** @format */
 
-import { NavLink } from 'react-router-dom';
-import { stateDetailsT } from './models';
+import { propFilmDetailsT } from './models';
+import { GobackBtn } from './reusedComponents/Goback';
 
-export function FilmDetails({ propObj }: { propObj: stateDetailsT | null }) {
+export function FilmDetails({ propObj, propClbk }: propFilmDetailsT) {
   return (
     <>
       <div className='details__container'>
@@ -13,9 +13,7 @@ export function FilmDetails({ propObj }: { propObj: stateDetailsT | null }) {
           className='item__poster'
         />
         <div className='info__container'>
-          <NavLink to='/' className='nav__element favorite__btn go-back_btn'>
-            Go back
-          </NavLink>
+          <GobackBtn custom='go-back_btn' />
           <h2 className='item__info'>{propObj?.Title}</h2>
           <p className='item__info'>{propObj?.Year}</p>
           <p className='item__info'>{propObj?.Genre}</p>
@@ -25,7 +23,7 @@ export function FilmDetails({ propObj }: { propObj: stateDetailsT | null }) {
           <button
             type='submit'
             className='nav__element favorite__btn list__btn'
-            onClick={() => console.log('click')}
+            onClick={() => propClbk()}
           >
             Add to Favorites
           </button>
