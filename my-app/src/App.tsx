@@ -11,7 +11,7 @@ import { FilmDetails } from './components/FilmDetails';
 import { fech } from './components/api/fechApi';
 
 function App() {
-  // const { data, loading, fech } = useFetch();
+  // const { data, dataObj, loading, fech } = useFetch();
   const [state, setState] = useState<stateT>({
     Search: [],
     totalResults: '',
@@ -28,7 +28,7 @@ function App() {
       setState(data.result);
       setStatus(false);
     }
-    // fech(API_KEY, 's', str);
+    // await fech(API_KEY, 's', str);
     // if (data !== undefined) {
     //   setState(data);
     // }
@@ -42,9 +42,9 @@ function App() {
       setStatus(false);
     }
 
-    // fech(API_KEY, 'i', str);
-    // if (data !== null) {
-    //   setStateDetails(data);
+    // await fech(API_KEY, 'i', str);
+    // if (dataObj !== undefined) {
+    //   setStateDetails(dataObj);
     // }
   };
 

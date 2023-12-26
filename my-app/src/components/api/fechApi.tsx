@@ -5,7 +5,8 @@
 
 // export type fechStateT = {
 //   loading: boolean;
-//   data?: stateT ;
+//   data?: stateT;
+//   dataObj?: stateDetailsT;
 //   error?: string;
 // };
 export async function fech(apikey: string, token: string, str: string) {
@@ -23,20 +24,30 @@ export async function fech(apikey: string, token: string, str: string) {
 //   const [status, setStatus] = useState<fechStateT>({
 //     loading: false,
 //     data: undefined,
+//     dataObj: undefined,
 //     error: undefined,
 //   });
-
 //   async function fech(apikey: string, token: string, str: string) {
 //     const url = `https://www.omdbapi.com?apikey=${apikey}&${token}=${str.toLowerCase()}`;
 //     setStatus({ loading: true });
 //     const response = await fetch(url);
 //     if (response.ok) {
 //       const result = await response.json();
-//       setStatus({ loading: false, data: result });
+//       if (token === 's') {
+//         setStatus({ loading: false, data: result });
+//       } else {
+//         setStatus({ loading: false, dataObj: result });
+//       }
 //     }
 //     if (!response.ok) {
 //       setStatus({ loading: false, error: response.statusText });
 //     }
 //   }
+//   useEffect(() => {
+//     if (url) {
+//       fech(url);
+//     }
+//   }, []);
+
 //   return { ...status, fech };
 // };
