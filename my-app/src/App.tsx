@@ -11,6 +11,7 @@ import { FilmDetails } from './components/FilmDetails';
 import { fech } from './components/api/fechApi';
 
 function App() {
+  // const { data, loading, fech } = useFetch();
   const [state, setState] = useState<stateT>({
     Search: [],
     totalResults: '',
@@ -18,15 +19,33 @@ function App() {
   });
   const [stateDetails, setStateDetails] = useState<stateDetailsT | null>(null);
   const [stateFavPage, setStateFavPage] = useState<stateDetailsT[]>([]);
+  const [status, setStatus] = useState(false);
 
   const inputSearchClbk = async (str: string) => {
+    setStatus(true);
     const data = await fech(API_KEY, 's', str);
-    setState(data);
+    if (data.isLoading) {
+      setState(data.result);
+      setStatus(false);
+    }
+    // fech(API_KEY, 's', str);
+    // if (data !== undefined) {
+    //   setState(data);
+    // }
   };
 
   const linkClickClbk = async (str: string) => {
+    setStatus(true);
     const data = await fech(API_KEY, 'i', str);
-    setStateDetails(data);
+    if (data.isLoading) {
+      setStateDetails(data.result);
+      setStatus(false);
+    }
+
+    // fech(API_KEY, 'i', str);
+    // if (data !== null) {
+    //   setStateDetails(data);
+    // }
   };
 
   const filmDetailClbk = () => {
@@ -70,6 +89,7 @@ function App() {
               <FilmDetails
                 propObj={stateDetails === null ? null : stateDetails}
                 propClbk={filmDetailClbk}
+                propStatus={status}
               />
             }
           />

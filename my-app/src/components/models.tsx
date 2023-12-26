@@ -47,6 +47,7 @@ export type propMainContent = {
 export type propFilmDetailsT = {
   propObj: stateDetailsT | null;
   propClbk: () => void;
+  propStatus: boolean;
 };
 
 //<-----------------------FavoritePage_Models------------------------>
