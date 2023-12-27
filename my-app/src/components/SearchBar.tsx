@@ -3,10 +3,15 @@
 import { useState } from 'react';
 import { propT, targetT } from './models';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { useAppSelector, useAppDispatch } from './hooks';
+import { setInputSearch } from './reducers/input-reducer';
 
 export function SearchBar({ propFunc }: propT) {
   const [state, setState] = useState('');
   const navigate = useNavigate();
+
+  const dispatch = useAppDispatch();
+  const { inputValue } = useAppSelector((state) => state.input);
 
   const handlerSubmit = (e: any) => {
     e.preventDefault();
@@ -17,7 +22,8 @@ export function SearchBar({ propFunc }: propT) {
 
   const handlerChange = ({ target }: targetT) => {
     const { value } = target;
-    setState(value);
+    // setState(value);
+    dispatch(setInputSearch(value));
   };
   return (
     <form className='nav__container' onSubmit={handlerSubmit}>
@@ -28,7 +34,7 @@ export function SearchBar({ propFunc }: propT) {
         <input
           type='text'
           name='search'
-          value={state}
+          value={inputValue}
           onChange={handlerChange}
           id='search'
           className='nav__element input__field'
