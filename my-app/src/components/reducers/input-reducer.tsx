@@ -6,13 +6,11 @@ export type inputSliceT = {
   inputValue: string;
 };
 
-const initialState = {
-  inputValue: '',
-};
-
 export const inputSlice = createSlice({
   name: 'input',
-  initialState: initialState,
+  initialState: {
+    inputValue: '',
+  },
   reducers: {
     setInputSearch: (state: inputSliceT, actions) => {
       state.inputValue = actions.payload;
