@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { propT, targetT } from './models';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from './hooks';
-import { setInputSearch } from './reducers/input-reducer';
+import { setInputSearch, setQueryString } from './reducers/input-reducer';
 
 export function SearchBar({ propFunc }: propT) {
   const [state, setState] = useState('');
@@ -16,6 +16,8 @@ export function SearchBar({ propFunc }: propT) {
   const handlerSubmit = (e: any) => {
     e.preventDefault();
     propFunc(state);
+    dispatch(setQueryString(inputValue));
+    dispatch(setInputSearch(''));
     setState('');
     navigate('/', { replace: true });
   };

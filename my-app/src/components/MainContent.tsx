@@ -2,9 +2,14 @@
 
 import { NavLink } from 'react-router-dom';
 import { NotFound } from './NotFound';
-import { propMainContent } from './models';
+import { objT, propMainContent } from './models';
+import { useAppSelector } from './hooks';
+import { useGetListFilmQuery } from './reducers/fetch-reducer';
 
 export function MainContent({ propArr, mainContentClbk }: propMainContent) {
+  const { queryString } = useAppSelector((state) => state.input);
+  const { data } = useGetListFilmQuery(queryString);
+  console.log(data);
   const { Search } = propArr;
   return (
     <>
@@ -12,7 +17,7 @@ export function MainContent({ propArr, mainContentClbk }: propMainContent) {
         <NotFound />
       ) : (
         <ul className='list__container'>
-          {Search.map((el) => {
+          {Search.map((el: objT) => {
             return (
               <li className='list__item' key={el.imdbID}>
                 <NavLink
