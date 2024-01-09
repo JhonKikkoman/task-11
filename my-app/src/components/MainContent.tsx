@@ -3,7 +3,7 @@
 import { NavLink } from 'react-router-dom';
 import { NotFound } from './NotFound';
 import { objT, propMainContent } from './models';
-import { useAppSelector } from './redux/hooks';
+import { useAppSelector } from './hooks';
 import { useGetListFilmQuery } from './redux/reducers/fetch-reducer';
 
 export function MainContent({ propArr, mainContentClbk }: propMainContent) {

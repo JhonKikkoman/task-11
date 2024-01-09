@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { propT, targetT } from './models';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from './redux/hooks';
+import { useAppSelector, useAppDispatch } from './hooks';
 import { setInputSearch } from './redux/reducers/input-reducer';
 import { setQueryString } from './redux/reducers/submit-reducer';
 
