@@ -3,8 +3,9 @@
 import { useState } from 'react';
 import { propT, targetT } from './models';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAppSelector, useAppDispatch } from './hooks';
-import { setInputSearch, setQueryString } from './reducers/input-reducer';
+import { useAppSelector, useAppDispatch } from './redux/hooks';
+import { setInputSearch } from './redux/reducers/input-reducer';
+import { setQueryString } from './redux/reducers/submit-reducer';
 
 export function SearchBar({ propFunc }: propT) {
   const [state, setState] = useState('');

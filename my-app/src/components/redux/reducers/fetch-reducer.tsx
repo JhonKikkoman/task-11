@@ -1,7 +1,8 @@
 /** @format */
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_KEY } from '../api/apiKyes';
+import { API_KEY } from '../../api/apiKyes';
+import { stateT } from '../../models';
 
 export const filmApi = createApi({
   reducerPath: 'filmApi',
@@ -11,11 +12,11 @@ export const filmApi = createApi({
   }),
   // endpoints конечные точки входа api , где свойство query является функцией и получит данные в аргумент при использовании хука
   endpoints: (builder) => ({
-    getListFilm: builder.query({
-      query: (str) => `?apikey=${API_KEY}&s=${str.toLowerCase()}`,
+    getListFilm: builder.query<stateT, string>({
+      query: (str: string) => `?apikey=${API_KEY}&s=${str.toLowerCase()}`,
     }),
-    getDetailsFilm: builder.query({
-      query: (str) => `?apikey=${API_KEY}&i=${str.toLowerCase()}`,
+    getDetailsFilm: builder.query<stateT, string>({
+      query: (str: string) => `?apikey=${API_KEY}&i=${str.toLowerCase()}`,
     }),
   }),
 });

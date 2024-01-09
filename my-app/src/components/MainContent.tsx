@@ -3,21 +3,28 @@
 import { NavLink } from 'react-router-dom';
 import { NotFound } from './NotFound';
 import { objT, propMainContent } from './models';
-import { useAppSelector } from './hooks';
-import { useGetListFilmQuery } from './reducers/fetch-reducer';
+import { useAppSelector } from './redux/hooks';
+import { useGetListFilmQuery } from './redux/reducers/fetch-reducer';
 
 export function MainContent({ propArr, mainContentClbk }: propMainContent) {
-  const { queryString } = useAppSelector((state) => state.input);
-  const { data } = useGetListFilmQuery(queryString);
+  const { queryString } = useAppSelector((state) => state.submit);
+  const {
+    data = {
+      Search: [],
+      totalResults: '',
+      Response: '',
+    },
+    isLoading,
+  } = useGetListFilmQuery(queryString);
   console.log(data);
-  const { Search } = propArr;
+  // const { Search } = propArr;
   return (
     <>
-      {propArr.Response === 'False' ? (
+      {data.Response === 'False' ? (
         <NotFound />
       ) : (
         <ul className='list__container'>
-          {Search.map((el: objT) => {
+          {data.Search.map((el: objT) => {
             return (
               <li className='list__item' key={el.imdbID}>
                 <NavLink
