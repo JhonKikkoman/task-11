@@ -13,7 +13,15 @@ export const filmApi = createApi({
   // endpoints конечные точки входа api , где свойство query является функцией и получит данные в аргумент при использовании хука
   endpoints: (builder) => ({
     getListFilm: builder.query<stateT, string>({
-      query: (str: string) => `?apikey=${API_KEY}&s=${str.toLowerCase()}`,
+      query: (str: string) =>
+        str === '' ? '' : `?apikey=${API_KEY}&s=${str.toLowerCase()}`,
+      // {
+      //   let queryString = '';
+      //   if (str !== '') {
+      //     queryString = `?apikey=${API_KEY}&s=${str.toLowerCase()}`;
+      //   }
+      //   return queryString;
+      // },
     }),
     getDetailsFilm: builder.query<stateT, string>({
       query: (str: string) => `?apikey=${API_KEY}&i=${str.toLowerCase()}`,
