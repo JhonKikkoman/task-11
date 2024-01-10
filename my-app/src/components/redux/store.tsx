@@ -4,11 +4,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import inputReducer from './reducers/input-reducer';
 import { filmApi } from './reducers/fetch-reducer';
 import submitReducer from './reducers/submit-reducer';
+import clickReducer from './reducers/click-reducer';
 
 export const store = configureStore({
   reducer: {
     input: inputReducer, // тут можно будет вытащить этот редуктор через useSelector
     submit: submitReducer,
+    click: clickReducer,
     [filmApi.reducerPath]: filmApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -6,9 +6,12 @@ import { objT, propMainContent } from './models';
 import { useAppSelector } from './hooks';
 import { useGetListFilmQuery } from './redux/reducers/fetch-reducer';
 import { PreLoader } from './PreLoader';
+import { useDispatch } from 'react-redux';
+import { setClickId } from './redux/reducers/click-reducer';
 
 export function MainContent({ propArr, mainContentClbk }: propMainContent) {
   const { queryString } = useAppSelector((state) => state.submit);
+  const dispatch = useDispatch();
   const {
     data = {
       Search: [],
@@ -17,7 +20,6 @@ export function MainContent({ propArr, mainContentClbk }: propMainContent) {
     },
     isLoading,
   } = useGetListFilmQuery(queryString);
-  console.log(data);
   // const { Search } = propArr;
   return (
     <>
@@ -32,7 +34,7 @@ export function MainContent({ propArr, mainContentClbk }: propMainContent) {
                   <NavLink
                     to='/details'
                     className='item__link'
-                    onClick={() => mainContentClbk(el.imdbID)}
+                    onClick={() => dispatch(setClickId(el.imdbID))}
                   >
                     {el.Title}
                   </NavLink>

@@ -3,30 +3,31 @@
 import { propFilmDetailsT } from './models';
 import { GobackBtn } from './reusedComponents/Goback';
 import { PreLoader } from './PreLoader';
+import { useAppSelector } from './hooks';
+import { useGetDetailsFilmQuery } from './redux/reducers/fetch-reducer';
 
 export function FilmDetails({
   propObj,
   propClbk,
   propStatus,
 }: propFilmDetailsT) {
+  const { id } = useAppSelector((state) => state.click);
+  const { data, isLoading } = useGetDetailsFilmQuery(id);
+
   return (
     <>
-      {propStatus && <PreLoader />}
-      {!propStatus && (
+      {isLoading && <PreLoader />}
+      {!isLoading && (
         <div className='details__container'>
-          <img
-            src={propObj?.Poster}
-            alt={propObj?.Title}
-            className='item__poster'
-          />
+          <img src={data?.Poster} alt={data?.Title} className='item__poster' />
           <div className='info__container'>
             <GobackBtn custom='go-back_btn' />
-            <h2 className='item__info'>{propObj?.Title}</h2>
-            <p className='item__info'>{propObj?.Year}</p>
-            <p className='item__info'>{propObj?.Genre}</p>
-            <p className='item__info'>{propObj?.Runtime}</p>
-            <p className='item__info'>{propObj?.Director}</p>
-            <p className='item__info'>{propObj?.imdbRating}</p>
+            <h2 className='item__info'>{data?.Title}</h2>
+            <p className='item__info'>{data?.Year}</p>
+            <p className='item__info'>{data?.Genre}</p>
+            <p className='item__info'>{data?.Runtime}</p>
+            <p className='item__info'>{data?.Director}</p>
+            <p className='item__info'>{data?.imdbRating}</p>
             <button
               type='submit'
               className='nav__element favorite__btn list__btn'

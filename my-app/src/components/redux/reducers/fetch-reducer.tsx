@@ -2,7 +2,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_KEY } from '../../api/apiKyes';
-import { stateT } from '../../models';
+import { stateDetailsT, stateT } from '../../models';
 
 export const filmApi = createApi({
   reducerPath: 'filmApi',
@@ -23,11 +23,12 @@ export const filmApi = createApi({
       //   return queryString;
       // },
     }),
-    getDetailsFilm: builder.query<stateT, string>({
+    getDetailsFilm: builder.query<stateDetailsT, string>({
       query: (str: string) => `?apikey=${API_KEY}&i=${str.toLowerCase()}`,
     }),
   }),
 });
 
+export const { getDetailsFilm } = filmApi.endpoints;
 export const { useGetListFilmQuery } = filmApi; // хук, создаётся по имени свойства в endpoints:{}можно использовать только с /query/react
 export const { useGetDetailsFilmQuery } = filmApi;
