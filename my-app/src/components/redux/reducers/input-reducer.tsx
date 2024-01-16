@@ -1,6 +1,6 @@
 /** @format */
 
-import { createSlice } from '@reduxjs/toolkit'; //  createSlice - для создания среза хранилища
+import { createSlice } from '@reduxjs/toolkit';
 
 export type inputSliceT = {
   inputValue: string;
@@ -18,5 +18,5 @@ export const inputSlice = createSlice({
   },
 });
 
-export const { setInputSearch } = inputSlice.actions; // дастаём actions , автоматически генерируется по имени свойства в reducers:{}
-export default inputSlice.reducer; // переименовываем редуктор именно его нужно импортировать в store
+export const { setInputSearch } = inputSlice.actions;
+export default inputSlice.reducer;

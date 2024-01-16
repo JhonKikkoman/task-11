@@ -11,7 +11,6 @@ import { FilmDetails } from './components/FilmDetails';
 import { fech } from './components/api/fechApi';
 
 function App() {
-  // const { data, dataObj, loading, fech } = useFetch();
   const [state, setState] = useState<stateT>({
     Search: [],
     totalResults: '',
@@ -28,10 +27,6 @@ function App() {
       setState(data.result);
       setStatus(false);
     }
-    // await fech(API_KEY, 's', str);
-    // if (data !== undefined) {
-    //   setState(data);
-    // }
   };
 
   const linkClickClbk = async (str: string) => {
@@ -41,11 +36,6 @@ function App() {
       setStateDetails(data.result);
       setStatus(false);
     }
-
-    // await fech(API_KEY, 'i', str);
-    // if (dataObj !== undefined) {
-    //   setStateDetails(dataObj);
-    // }
   };
 
   const filmDetailClbk = () => {

@@ -1,6 +1,6 @@
 /** @format */
 
-import { createSlice } from '@reduxjs/toolkit'; //  createSlice - для создания среза хранилища
+import { createSlice } from '@reduxjs/toolkit';
 
 export type submitSliceT = {
   queryString: string;
@@ -19,4 +19,4 @@ export const submitSlice = createSlice({
 });
 
 export const { setQueryString } = submitSlice.actions;
-export default submitSlice.reducer; // переименовываем редуктор именно его нужно импортировать в store
+export default submitSlice.reducer;

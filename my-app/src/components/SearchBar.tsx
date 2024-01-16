@@ -25,7 +25,6 @@ export function SearchBar({ propFunc }: propT) {
 
   const handlerChange = ({ target }: targetT) => {
     const { value } = target;
-    // setState(value);
     dispatch(setInputSearch(value));
   };
   return (

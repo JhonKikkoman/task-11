@@ -3,16 +3,19 @@
 import { propFilmDetailsT } from './models';
 import { GobackBtn } from './reusedComponents/Goback';
 import { PreLoader } from './PreLoader';
-import { useAppSelector } from './hooks';
 import { useGetDetailsFilmQuery } from './redux/reducers/fetch-reducer';
+import { useDispatch } from 'react-redux';
+import { setFavorites } from './redux/reducers/favPage-reducer';
+import { useLocation } from 'react-router-dom';
 
 export function FilmDetails({
   propObj,
   propClbk,
   propStatus,
 }: propFilmDetailsT) {
-  const { id } = useAppSelector((state) => state.click);
-  const { data, isLoading } = useGetDetailsFilmQuery(id);
+  const location = useLocation();
+  const { data, isLoading } = useGetDetailsFilmQuery(location.state);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -31,7 +34,7 @@ export function FilmDetails({
             <button
               type='submit'
               className='nav__element favorite__btn list__btn'
-              onClick={() => propClbk()}
+              onClick={() => dispatch(setFavorites(data))}
             >
               Add to Favorites
             </button>

@@ -103,6 +103,7 @@
 .list__item {
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .list__btn {
